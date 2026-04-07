@@ -1,0 +1,9 @@
+# Local environment variables
+.env
+.env.*
+!.env.example
+
+# Local scripts/config with secrets
+scripts/*.local
+scripts/*secret*
+node_modules
