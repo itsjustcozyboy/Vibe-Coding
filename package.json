@@ -12,7 +12,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "claude:server": "node src/claude-server.js",
+    "claude:cli": "node bin/register-claude.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
