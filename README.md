@@ -87,6 +87,44 @@ SKIP_HOOKS=1 ./publish-all.sh "feat: update workspace" main
 
 If you want hooks enabled, run with `SKIP_HOOKS=0`.
 
+## Vercel deployment (web)
+
+This repository has a Next.js frontend in `web/`.
+
+### Required environment variables (Vercel Project Settings)
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (required by `/api/register-claude`)
+- `ANTHROPIC_API_KEY` (optional, enables Claude planner in `/api/terminal-execute`)
+
+### Deploy via CLI
+
+```bash
+npm i -g vercel
+cd web
+vercel
+vercel --prod
+```
+
+After deploy, Vercel will print the production URL.
+
+## Single Terminal architecture (Claude + Supabase realtime)
+
+- Web terminal page: `web/pages/terminal.js`
+- Execution API: `web/pages/api/terminal-execute.js`
+
+How it works:
+
+1. User types one command in the web terminal.
+2. API converts command to safe actions.
+	- If `ANTHROPIC_API_KEY` exists, Claude plans the action JSON.
+	- If key is missing, rule-based parser is used.
+3. API executes only allowed Supabase actions (`list/create/update/delete` for `todos`, list for `claude_actions`).
+4. Frontend subscribes to Supabase Realtime on `todos`, so DB changes appear instantly.
+
+This keeps one terminal-like UX in the web app while staying deployable on Vercel serverless.
+
 ### Troubleshooting 401 invalid or revoked token
 
 If gateway mode returns 401:
