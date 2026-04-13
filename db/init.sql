@@ -33,3 +33,13 @@ DROP TRIGGER IF EXISTS todos_updated_at ON todos;
 CREATE TRIGGER todos_updated_at
   BEFORE UPDATE ON todos
   FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+
+-- Table to persist Claude actions
+CREATE TABLE IF NOT EXISTS claude_actions (
+  id SERIAL PRIMARY KEY,
+  text TEXT NOT NULL,
+  board_id INTEGER,
+  actor TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);

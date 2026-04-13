@@ -1,5 +1,5 @@
 'use strict';
-const { processNaturalLanguageToSupabase } = require('../../../tmp/itsjustcozyboy-Database/src/chatgpt-agent.cjs');
+const { processNaturalLanguageToSupabase } = require('../lib/processNaturalLanguageToSupabase');
 
 /**
  * registerClaudeAction
