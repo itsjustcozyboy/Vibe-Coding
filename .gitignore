@@ -7,3 +7,5 @@
 scripts/*.local
 scripts/*secret*
 node_modules
+.vercel
+.env*.local

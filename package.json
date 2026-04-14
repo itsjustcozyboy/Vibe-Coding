@@ -7,6 +7,9 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "build": "npm --prefix web install && npm --prefix web run build",
+    "web:dev": "npm --prefix web run dev",
+    "web:start": "npm --prefix web run start",
     "test": "jest --runInBand --forceExit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

@@ -2,14 +2,21 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main style={{padding: '2rem', fontFamily: 'system-ui'}}>
-      <h1>Vibe Todo / Claude Console</h1>
-      <ul>
-        <li><Link href="/terminal">Claude Terminal (실시간 DB 제어)</Link></li>
-        <li><Link href="/auth">Sign in / Sign up</Link></li>
-        <li><Link href="/todos">Todos</Link></li>
-        <li><Link href="/claude-actions">Claude Actions</Link></li>
-      </ul>
-    </main>
+    <div className="stack">
+      <section className="hero-panel">
+        <p className="hero-kicker">Vibe Coding</p>
+        <h1 className="page-headline">Simple Workspace Home</h1>
+        <p className="page-subtitle">
+          Fast access to terminal and support FAQ.
+        </p>
+      </section>
+
+      <section className="card stack">
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <Link href="/terminal" className="btn btn-primary">Terminal</Link>
+          <Link href="/faq" className="btn">FAQ</Link>
+        </div>
+      </section>
+    </div>
   )
 }
